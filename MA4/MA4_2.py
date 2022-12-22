@@ -23,7 +23,7 @@ def main():
 	f.set(35)
 	print("age:\t", f.get())
 	print("fibo:\t", fib_py(f.get()))
-	print("fibo c++:", f.fib(f.get()))
+	# print("fibo c++:", f.fib(f.get()))
 
 if __name__ == '__main__':
 	start = pc()
