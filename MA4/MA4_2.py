@@ -19,37 +19,80 @@ def fib_numba(n):
 		return (fib_numba(n-1) + fib_numba(n-2))
 
 def main():
-	numbers = [number for number in range(30,46)]
-	time_py = []
-	time_numba = []
-	time_cpp = []
+	numbers1 = [number for number in range(30,46)]
+	time_py1 = []
+	time_numba1 = []
+	time_cpp1 = []
 
-	for number in numbers:
+	numbers2 = [number for number in range(20,31)]
+	time_py2 = []
+	time_numba2 = []
+	time_cpp2 = []
+
+	for number in numbers1:
 		start = pc()
 		fib_py(number)
 		end = pc()
-		time_py.append(end-start)
+		time_py1.append(end-start)
 		# print(f"Pure python fib({number}) took {round(end-start,2)} seconds")
 
-	for number in numbers:
+	for number in numbers1:
 		start = pc()
 		fib_numba(number)
 		end = pc()
-		time_numba.append(end-start)
+		time_numba1.append(end-start)
 		# print(f"Numba fib({number}) took {round(end-start,2)} seconds")
 
-	for number in numbers:
+	for number in numbers1:
 		start = pc()
 		f = Person(number)
 		f.fib()
 		end = pc()
-		time_cpp.append(end-start)
+		time_cpp1.append(end-start)
 		# print(f"C++ fib({number}) took {round(end-start,2)} seconds")
 
-	plt.plot(time_py)
-	plt.plot(time_numba)
-	plt.plot(time_cpp)
-	plt.savefig(f'time_py_numba_cpp.png')
+	for number in numbers2:
+		start = pc()
+		fib_py(number)
+		end = pc()
+		time_py2.append(end-start)
+		# print(f"Pure python fib({number}) took {round(end-start,2)} seconds")
+
+	for number in numbers2:
+		start = pc()
+		fib_numba(number)
+		end = pc()
+		time_numba2.append(end-start)
+		# print(f"Numba fib({number}) took {round(end-start,2)} seconds")
+
+	for number in numbers2:
+		start = pc()
+		f = Person(number)
+		f.fib()
+		end = pc()
+		time_cpp2.append(end-start)
+		# print(f"C++ fib({number}) took {round(end-start,2)} seconds")
+
+	plt.plot(time_py1)
+	plt.plot(time_numba1)
+	plt.plot(time_cpp1)
+	plt.savefig(f'time_py_numba_cpp1.png')
+
+	plt.plot(time_py2)
+	plt.plot(time_numba2)
+	plt.plot(time_cpp2)
+	plt.savefig(f'time_py_numba_cpp2.png')
+
+	start = pc()
+	fib_numba(47)
+	end = pc()
+	print(f"Numba fib(47) took {round(end-start,2)} seconds")
+
+	start = pc()
+	f.get(47)
+	f.fib()
+	end = pc()
+	print(f"C++ fib(47) took {round(end-start,2)} seconds")
 
 if __name__ == '__main__':
 	main()
