@@ -32,7 +32,7 @@ int Person::fib_p(int age){
 	if (age <= 1)
 		return (age);
 	else
-		return (fib(age-1) + fib(age-2));
+		return (fib_p(age-1) + fib_p(age-2));
 	}
 
 extern "C"{
