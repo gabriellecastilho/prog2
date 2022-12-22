@@ -73,15 +73,16 @@ def main():
 		time_cpp2.append(end-start)
 		# print(f"C++ fib({number}) took {round(end-start,2)} seconds")
 
-	plt.plot(time_py1)
+	
+	fig1 = plt.figure(1)
 	plt.plot(time_numba1)
-	plt.plot(time_cpp1)
-	plt.savefig(f'time_py_numba_cpp1.png')
+	plt.plot(time_py1)
+	fig1.savefig(f'time_py_numba_cpp1.png')
 
-	plt.plot(time_py2)
+	fig2 = plt.figure(2)
 	plt.plot(time_numba2)
-	plt.plot(time_cpp2)
-	plt.savefig(f'time_py_numba_cpp2.png')
+	plt.plot(time_py2)
+	fig2.savefig(f'time_py_numba_cpp2.png')
 
 	start = pc()
 	fib_numba(47)
