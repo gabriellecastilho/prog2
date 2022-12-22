@@ -1,6 +1,5 @@
 """ Python interface to the C++ Person class """
 import ctypes
-from time import perf_counter as pc
 lib = ctypes.cdll.LoadLibrary('./libperson.so')
 
 class Person(object):
@@ -10,8 +9,6 @@ class Person(object):
 		lib.Person_get.argtypes = [ctypes.c_void_p]
 		lib.Person_get.restype = ctypes.c_int
 		lib.Person_set.argtypes = [ctypes.c_void_p,ctypes.c_int]
-		lib.Person_fib.argtypes = [ctypes.c_void_p,ctypes.c_int]
-		lib.Person_fib.restype = ctypes.c_int
 		lib.Person_delete.argtypes = [ctypes.c_void_p]
 		self.obj = lib.Person_new(age)
 
@@ -20,9 +17,6 @@ class Person(object):
 
 	def set(self, age):
 		lib.Person_set(self.obj, age)
-
-	def fib(self, age):
-		lib.Person_fib(self.obj, age)
         
 	def __del__(self):
 		return lib.Person_delete(self.obj)

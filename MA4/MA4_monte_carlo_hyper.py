@@ -1,6 +1,7 @@
 import random
 import math
 import numpy as np
+from time import perf_counter as pc
 
 def monte_carlo_hyper(n, d):
     '''
@@ -27,16 +28,19 @@ def monte_carlo_hyper(n, d):
     in_hyper = list(filter(f_in_hyper, sum_sq_elem))
 
     #Calculate the volumes  
-    real_volume = (math.pi ** (d/2)) / math.gamma((d / 2) + 1)
+    theor_volume = (math.pi ** (d/2)) / math.gamma((d / 2) + 1)
     emp_volume = 2**d * (len(in_hyper)/n)
 
     #Print infos
     print("Points in hypershere:\t", len(in_hyper))
     print("Empirical volume:\t", round(emp_volume, 5))
-    print("Real volume:\t\t", round(real_volume, 5))
+    print("Theoretical volume:\t\t", round(theor_volume, 5))
     return
 
 if __name__ == "__main__":
     n = int(input("Type n (integer) to generate points:"))
     d = int(input("Type d (integer) to choose number of dimentions:"))
+    start = pc()
     monte_carlo_hyper(n, d)
+    end = pc()
+    print(f"Process took {round(end-start, 2)} seconds")
